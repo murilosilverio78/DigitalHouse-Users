@@ -2,10 +2,12 @@ import './App.css';
 import { useState } from 'react';
 
 import { getCepData } from './services/viacep';
+import Pagination from './pagination';
 
 function App() {
   const [cep, setCep] = useState('');
   const [logradouro, setLogradouro] = useState('');
+  const [page, setPage] = useState(2)
   
   async function onBlurCep() {          
     const data = await getCepData(cep);
@@ -42,7 +44,9 @@ function App() {
         <input id="numero" type="text" placeholder="Digite o número da casa"/> 
        
         <button id="signupBtn" type="submit">Cadastrar</button>
+        <Pagination page = {page} onPageChange = {(newPage) => setPage(newPage)} />
       </form>   
+      
     </div>         
   );
 }
